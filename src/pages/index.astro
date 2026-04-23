@@ -1,0 +1,1278 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { Icon } from 'astro-icon/components';
+import heroTitleSvg from '~/assets/hero-title.svg?raw';
+import tieSvg from '~/assets/tie.svg?raw';
+import scribbleS from '~/assets/scribble-s.svg?raw';
+import laurelL from '~/assets/laurel-wreath-l.png';
+import laurelR from '~/assets/laurel-wreath-r.png';
+import goldenSeal from '~/assets/golden-seal.png';
+import qrismQr from '~/assets/qrism-qr.png';
+
+const tickerWord = 'Ongoing';
+const tickerItems = Array.from({ length: 12 }, () => tickerWord);
+---
+
+<BaseLayout title="Mohnish Salian" description="Designer & developer building thoughtful digital products.">
+  <section class="hero">
+    <div class="hero__block">
+      <p class="hero__greeting">Hi, I&rsquo;m Mohnish, a</p>
+
+      <h1 class="hero-display">
+        <span class="sr-only">UX Designeer</span>
+        <span class="hero-display__title" aria-hidden="true">
+          <span class="hero-title hero-title--outline" set:html={heroTitleSvg} />
+          <span class="hero-display__rect hero-display__rect--blue"></span>
+          <span class="hero-display__rect hero-display__rect--white"></span>
+          <span class="hero-title hero-title--solid" set:html={heroTitleSvg} />
+        </span>
+      </h1>
+    </div>
+
+    <p class="hero__tagline">
+      From sketches to production. I help design and build enterprise applications,
+      the kind banks like&nbsp;<span class="hero__hsbc-mark"
+        ><Icon name="simple-icons:hsbc" aria-label="HSBC" /></span>&nbsp;<b>HSBC</b> trust with their customers.
+    </p>
+  </section>
+
+  <section class="work">
+    <h2 class="work__heading">
+      <span class="sr-only">Professional work</span>
+      <span aria-hidden="true">Profess<span class="work__tie" set:html={tieSvg} />onal work</span>
+    </h2>
+
+    <div class="work__cards">
+      <a href="#" class="case-card case-card--featured">
+        <div class="case-card__body">
+          <div class="case-card__award" aria-label="Best case study">
+            <Image src={laurelL} alt="" class="case-card__laurel" />
+            <span class="case-card__award-label">BEST</span>
+            <Image src={laurelR} alt="" class="case-card__laurel" />
+          </div>
+          <h3 class="case-card__title">
+            HSBC Queue Management — From Dormant Module to Enterprise Backbone
+          </h3>
+          <ul class="case-card__tags" role="list">
+            <li class="tag"><Icon name="lucide:clock" /> 10 min read</li>
+            <li class="tag">🎨 Design</li>
+          </ul>
+          <p class="case-card__desc">
+            Revamping JRNI's unused queuing product into the system that powered HSBC Singapore's flagship branch — and unlocked a new market for the company.
+          </p>
+        </div>
+        <div class="case-card__media" aria-hidden="true"></div>
+      </a>
+
+      <div class="work__row">
+        <a href="#" class="case-card">
+          <div class="case-card__media case-card__media--top" aria-hidden="true"></div>
+          <div class="case-card__ticker" aria-hidden="true">
+            <div class="marquee">
+              <div class="marquee__track">
+                {tickerItems.map((t) => <span class="marquee__item">{t}</span>)}
+              </div>
+              <div class="marquee__track" aria-hidden="true">
+                {tickerItems.map((t) => <span class="marquee__item">{t}</span>)}
+              </div>
+            </div>
+          </div>
+          <div class="case-card__body">
+            <h3 class="case-card__title">
+              Building an inventory and accounting system for India's fabric trading businesses
+            </h3>
+            <ul class="case-card__tags" role="list">
+              <li class="tag"><Icon name="lucide:clock" /> 10 min read</li>
+              <li class="tag">🎨 Design</li>
+              <li class="tag">🛠️ Development</li>
+            </ul>
+            <p class="case-card__desc">
+              Revamping JRNI's unused queuing product into the system that powered HSBC Singapore's flagship branch — and unlocked a new market for the company.
+            </p>
+          </div>
+        </a>
+
+        <a href="#" class="case-card case-card--sealed">
+          <div class="case-card__media case-card__media--top" aria-hidden="true">
+            <Image src={goldenSeal} alt="" class="case-card__seal" />
+          </div>
+          <div class="case-card__body">
+            <h3 class="case-card__title">
+              Designing an Enterprise Events Platform That Turns Trunk Shows into Bookable Experiences
+            </h3>
+            <ul class="case-card__tags" role="list">
+              <li class="tag"><Icon name="lucide:clock" /> 10 min read</li>
+              <li class="tag">🎨 Design</li>
+              <li class="tag">🛠️ Development</li>
+            </ul>
+            <p class="case-card__desc">
+              Revamping JRNI's unused queuing product into the system that powered HSBC Singapore's flagship branch — and unlocked a new market for the company.
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="philosophy">
+    <p class="philosophy__label">My philosophy</p>
+    <p class="philosophy__heading">Design without limits. Build within them</p>
+  </section>
+
+  <section class="passion">
+    <h2 class="passion__heading">
+      <span class="sr-only">Passion projects</span>
+      <span aria-hidden="true"
+        >Pas<span class="passion__s"
+          >s<span class="passion__scribble" set:html={scribbleS} /></span
+        >ion projects</span
+      >
+    </h2>
+
+    <div class="shelf" data-shelf>
+      <article class="book book--open" data-book>
+        <button class="book__spine" type="button" data-spine>
+          <span>Qrism &mdash; A high capacity QR</span>
+        </button>
+        <div class="book__content">
+          <Image src={qrismQr} alt="Qrism multicolor QR code" class="book__qr" />
+          <p class="book__desc">
+            Qrism is a performant and reliable Rust library for generating and
+            reading QR codes. Supports multicolor QR for enhanced storage
+            capacity alongside traditional black &amp; white QR. Multicolor QR
+            can store <b>3x times</b> more data than regular QR.
+          </p>
+          <a class="btn book__cta" href="#">
+            Github <Icon name="lucide:arrow-up-right" />
+          </a>
+        </div>
+      </article>
+
+      <article class="book" data-book>
+        <button class="book__spine" type="button" data-spine>
+          <span>Watchparty &mdash; Co-watch movies</span>
+        </button>
+        <div class="book__content">
+          <p class="book__desc">
+            A synchronized video watch-party app that keeps playback in lockstep
+            across friends, complete with a side-by-side chat and reactions.
+          </p>
+          <a class="btn book__cta" href="#">
+            Github <Icon name="lucide:arrow-up-right" />
+          </a>
+        </div>
+      </article>
+
+      <article class="book" data-book>
+        <button class="book__spine" type="button" data-spine>
+          <span>Rusciii &mdash; A rust based ascii art generator</span>
+        </button>
+        <div class="book__content">
+          <p class="book__desc">
+            A terminal-first ASCII art generator written in Rust. Converts
+            images and live camera feeds into dense, legible character art.
+          </p>
+          <a class="btn book__cta" href="#">
+            Github <Icon name="lucide:arrow-up-right" />
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="shelf__nav" aria-label="Passion projects navigation">
+      <button
+        type="button"
+        class="shelf__btn"
+        data-prev
+        aria-label="Previous project"
+      >
+        <Icon name="lucide:arrow-left" />
+      </button>
+      <button
+        type="button"
+        class="shelf__btn"
+        data-next
+        aria-label="Next project"
+      >
+        <Icon name="lucide:arrow-right" />
+      </button>
+    </div>
+  </section>
+
+  <div class="monocle" data-monocle aria-hidden="true">
+    <svg class="monocle__ring" viewBox="0 0 200 200" aria-hidden="true">
+      <defs>
+        <path
+          id="monocle-ring-path"
+          d="M 100 100 m -74 0 a 74 74 0 1 1 148 0 a 74 74 0 1 1 -148 0"
+          fill="none"
+        />
+      </defs>
+      <text class="monocle__text">
+        <textPath
+          href="#monocle-ring-path"
+          startOffset="0"
+          textLength="465"
+          lengthAdjust="spacingAndGlyphs"
+          data-monocle-text
+        >
+        · CLICK TO READ&nbsp· CLICK TO READ&nbsp;
+        </textPath>
+      </text>
+    </svg>
+    <span class="monocle__icon">
+      <Icon name="lucide:book-open-text" />
+    </span>
+  </div>
+
+  <section class="connect">
+    <h2 class="connect__heading">
+      <span class="sr-only">Let&rsquo;s connect</span>
+      <span aria-hidden="true"
+        >Let<span class="connect__apos">&rsquo;</span>s connect</span
+      >
+    </h2>
+
+    <p class="connect__desc">
+			If you&rsquo;ve made it this far, we should probably just talk. You can contact me at
+			<a href="#">mohnishsalian02@gmail.com</a>
+    </p>
+
+    <div class="connect__buttons">
+      <a class="btn connect__btn" href="#">
+        <span class="connect__btn-text">
+          LinkedIn <Icon name="lucide:arrow-up-right" />
+        </span>
+        <span class="connect__btn-brand" aria-hidden="true">
+          <Icon name="simple-icons:linkedin" />
+        </span>
+      </a>
+      <a class="btn connect__btn" href="#">
+        <span class="connect__btn-text">
+          Github <Icon name="lucide:arrow-up-right" />
+        </span>
+        <span class="connect__btn-brand" aria-hidden="true">
+          <Icon name="simple-icons:github" />
+        </span>
+      </a>
+      <a class="btn connect__btn" href="#">
+        <span class="connect__btn-text">
+          Behance <Icon name="lucide:arrow-up-right" />
+        </span>
+        <span class="connect__btn-brand" aria-hidden="true">
+          <Icon name="simple-icons:behance" />
+        </span>
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const shelves = document.querySelectorAll<HTMLElement>('[data-shelf]');
+  shelves.forEach((shelf) => {
+    const books = Array.from(
+      shelf.querySelectorAll<HTMLElement>('[data-book]')
+    );
+    if (books.length === 0) return;
+
+    const container = shelf.parentElement;
+    const prev = container?.querySelector<HTMLButtonElement>('[data-prev]');
+    const next = container?.querySelector<HTMLButtonElement>('[data-next]');
+
+    let idx = books.findIndex((b) => b.classList.contains('book--open'));
+    if (idx < 0) idx = 0;
+
+    const setOpen = (i: number) => {
+      const n = books.length;
+      idx = ((i % n) + n) % n;
+      books.forEach((b, bi) => b.classList.toggle('book--open', bi === idx));
+    };
+
+    books.forEach((book, i) => {
+      const spine = book.querySelector<HTMLButtonElement>('[data-spine]');
+      spine?.addEventListener('click', () => setOpen(i));
+    });
+
+    prev?.addEventListener('click', () => setOpen(idx - 1));
+    next?.addEventListener('click', () => setOpen(idx + 1));
+  });
+
+  // Monocle cursor — shown on hover of case cards and closed book spines.
+  const monocle = document.querySelector<HTMLElement>('[data-monocle]');
+  const monocleLabel = monocle?.querySelector<SVGTextPathElement>(
+    '[data-monocle-text]'
+  );
+  const fineHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  if (monocle && monocleLabel && fineHover) {
+    const setMode = (mode: 'read' | 'expand') => {
+      const word = mode === 'read' ? 'READ' : 'EXPAND';
+      monocleLabel.textContent = `· CLICK TO ${word} · CLICK TO ${word} `;
+    };
+
+    const ring = monocle.querySelector<SVGElement>('.monocle__ring');
+    const reducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    const DEFAULT_DPS = 36;   // 10s per revolution
+    const BURST_DPS = 600;    // ~1.2s per revolution
+    const BURST_MS = 250;
+    const EASE = 0.06;        // per-frame-at-60fps lerp factor toward target
+
+    let angle = 0;
+    let speed = DEFAULT_DPS;
+    let target = DEFAULT_DPS;
+    let lastT = 0;
+    let rafId: number | null = null;
+    let stopTimer: number | undefined;
+    let burstTimer: number | undefined;
+
+    const tick = (t: number) => {
+      const dt = lastT ? (t - lastT) / 1000 : 0;
+      lastT = t;
+      // Frame-rate independent lerp — EASE is the 60fps per-frame fraction
+      const k = 1 - Math.pow(1 - EASE, dt * 60);
+      speed += (target - speed) * k;
+      angle = (angle + speed * dt) % 360;
+      if (ring) ring.style.transform = `rotate(${angle}deg)`;
+      rafId = requestAnimationFrame(tick);
+    };
+
+    const startLoop = () => {
+      if (rafId != null || reducedMotion) return;
+      lastT = 0;
+      rafId = requestAnimationFrame(tick);
+    };
+    const stopLoop = () => {
+      if (rafId != null) cancelAnimationFrame(rafId);
+      rafId = null;
+    };
+
+    const show = () => {
+      monocle.classList.add('monocle--active');
+      window.clearTimeout(stopTimer);
+      window.clearTimeout(burstTimer);
+      target = BURST_DPS;
+      burstTimer = window.setTimeout(() => {
+        target = DEFAULT_DPS;
+      }, BURST_MS);
+      startLoop();
+    };
+    const hide = () => {
+      monocle.classList.remove('monocle--active');
+      target = DEFAULT_DPS;
+      // Keep spinning through the opacity fade, then stop the loop
+      window.clearTimeout(stopTimer);
+      stopTimer = window.setTimeout(stopLoop, 300);
+    };
+
+    let pendingX = 0;
+    let pendingY = 0;
+    let posDirty = false;
+    document.addEventListener(
+      'mousemove',
+      (e) => {
+        pendingX = e.clientX;
+        pendingY = e.clientY;
+        if (!posDirty) {
+          posDirty = true;
+          requestAnimationFrame(() => {
+            monocle.style.transform = `translate3d(${pendingX}px, ${pendingY}px, 0) translate(-50%, -50%)`;
+            posDirty = false;
+          });
+        }
+      },
+      { passive: true }
+    );
+
+    document.querySelectorAll<HTMLElement>('.case-card').forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        setMode('read');
+        show();
+      });
+      el.addEventListener('mouseleave', hide);
+    });
+
+    document.querySelectorAll<HTMLElement>('.book__spine').forEach((el) => {
+      el.addEventListener('mouseenter', () => {
+        if (el.closest('.book')?.classList.contains('book--open')) return;
+        setMode('expand');
+        show();
+      });
+      el.addEventListener('mouseleave', hide);
+    });
+  }
+</script>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--space-24);
+    padding-block: 0 var(--space-12);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* -------- Greeting + title capsule --------
+     Block sized to the title svg's natural width (in em), centered in the hero.
+     Greeting and title share the same left edge. */
+  .hero__block {
+    /* Drives em-based math for every descendant in this composition */
+    font-size: clamp(3rem, 0.5rem + 11vw, 8rem);
+    width: max-content;
+    max-width: 100%;
+    margin-inline: auto;
+    /* Top padding reserves room for the rectangles that overhang above the title */
+    padding-top: 2.95em;
+    text-align: left;
+  }
+
+  .hero__greeting {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.3125em; /* 40/128 */
+    line-height: 1;
+    color: var(--color-fg);
+    margin: 0;
+    max-width: none;
+    padding: 0;
+  }
+
+  /* -------- Display title -------- */
+  .hero-display {
+    font-family: var(--font-heading);
+    font-weight: 900;
+    font-size: 1em;
+    line-height: 1;
+    color: var(--color-fg);
+    margin: 0;
+    margin-top: -0.08em;
+  }
+
+  /* Title container — sized to svg natural aspect in em */
+  .hero-display__title {
+    position: relative;
+    display: block;
+    /* 870 / 128 = 6.797em (svg title span width at base font-size) */
+    width: 6.797em;
+    max-width: 100%;
+    aspect-ratio: 871 / 117;
+  }
+
+  /* Each hero-title wrapper stretches to fill the title container */
+  .hero-title {
+    position: absolute;
+    inset: 0;
+    display: block;
+    color: var(--color-fg);
+  }
+
+  .hero-title :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible; /* helmet extends slightly above viewBox corners */
+  }
+
+  /* Outlined instance — sits beneath solid and rectangles */
+  .hero-title--outline {
+    z-index: 3;
+  }
+  .hero-title--outline :global(.hero-title__letters path) {
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 3;
+    stroke-linejoin: round;
+  }
+
+  /* Solid instance — on top, clipped so the right 30% reveals the outline beneath */
+  .hero-title--solid {
+    z-index: 4;
+    clip-path: inset(0 30% 0 0);
+  }
+
+  /* Rectangles sit between outline (below) and solid (above), covering the right portion.
+     Sizing is in % of title width so the composition scales uniformly as the svg scales. */
+  .hero-display__rect {
+    position: absolute;
+    display: block;
+    top: 0;
+    width: 41.38%; /* 360/870 */
+    aspect-ratio: 360 / 540;
+    pointer-events: none;
+  }
+
+  /* White rect — aligned with the solid-title clip line (left edge at 70%). */
+  .hero-display__rect--white {
+    left: 70%;
+    margin-top: -41.03%; /* -357/870 of title width */
+    background: var(--color-bg);
+    border: 2px solid var(--color-fg);
+    z-index: 2;
+  }
+
+  /* Blue rect — offset down-and-right from the white rect. */
+  .hero-display__rect--blue {
+    left: calc(70% + 3.45%); /* +30/870 */
+    margin-top: -37.59%; /* -327/870 of title width */
+    background: var(--color-mark-blue);
+    z-index: 1;
+  }
+
+  /* -------- Tagline -------- */
+  .hero__tagline {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: clamp(1.25rem, 0.3rem + 2.5vw, 2.5rem);
+    line-height: 1.4;
+    text-align: center;
+    color: var(--color-fg);
+    max-width: none;
+    margin: 0;
+  }
+
+  .hero__tagline b {
+    font-weight: 500;
+  }
+
+  .hero__hsbc-mark {
+    display: inline-block;
+    line-height: 0;
+    vertical-align: -0.08em;
+    color: #db0011;
+  }
+
+  .hero__hsbc-mark :global(svg) {
+    /* 32px at tagline's 40px base = 0.8em; HSBC wordmark aspect ≈ 63:32 */
+    height: 1.5em;
+    width: 1.5em;
+    display: inline-block;
+		vertical-align: text-bottom;
+		margin: -0.05em;
+  }
+
+  /* ================= Professional work section ================= */
+  .work {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding-block: var(--space-12) 0;
+  }
+
+  /* Heading — serif display type, tie svg replaces the first 'i' */
+  .work__heading {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 0.5rem + 7vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: var(--color-fg);
+    margin: 0;
+  }
+
+  .work__tie {
+    display: inline-block;
+    vertical-align: baseline;
+    height: 0.85em;
+    aspect-ratio: 51 / 102;
+    margin-inline: 0.02em;
+    color: var(--color-fg);
+    translate: 0 0.1em; /* nudge down so tie knot aligns with x-height */
+  }
+
+  .work__tie :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .work__cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+
+  .work__row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  @media (max-width: 768px) {
+    .work__row { grid-template-columns: minmax(0, 1fr); }
+  }
+
+  /* -------- Case card (shared) -------- */
+  .case-card {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid var(--color-fg);
+    background: var(--color-bg);
+    color: inherit;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--dur-base, 200ms) var(--ease-out, ease-out);
+  }
+
+  .case-card:focus-visible {
+    outline: 3px solid var(--color-mark-blue);
+    outline-offset: 4px;
+  }
+
+  .case-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: clamp(2rem, 2vw, 3rem);
+  }
+
+  .case-card__title {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 0.8rem + 1vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    margin: 0;
+    color: var(--color-fg);
+  }
+
+  .case-card__desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-fg);
+    margin: 0;
+  }
+
+  .case-card__media {
+    background: #d9d9d9;
+    flex: 1 1 auto;
+  }
+
+  .case-card__media--top {
+    aspect-ratio: 540 / 300;
+    flex: none;
+  }
+
+  /* Featured card: side-by-side content + media */
+  .case-card--featured {
+    flex-direction: row;
+    min-height: 500px;
+  }
+
+  .case-card--featured .case-card__body {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+  }
+
+  .case-card--featured .case-card__media {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  @media (max-width: 768px) {
+    .case-card--featured {
+      flex-direction: column;
+      min-height: 0;
+    }
+    .case-card--featured .case-card__media { aspect-ratio: 540 / 300; flex: none; }
+  }
+
+  /* -------- Award badge (laurels + BEST) -------- */
+  .case-card__award {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--color-fg);
+  }
+
+  .case-card__laurel {
+    display: block;
+    width: auto;
+    height: 2.875rem; /* 46px */
+  }
+
+  .case-card__award-label {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  /* -------- Tag pills -------- */
+  .case-card__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    height: 2rem;
+    padding: 0 0.75rem;
+    border: 2px solid var(--color-fg);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 0.875rem;
+    letter-spacing: -0.01em;
+    color: var(--color-fg);
+    white-space: nowrap;
+  }
+
+  .tag :global(svg) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  /* -------- "Ongoing" marquee ticker -------- */
+  .case-card__ticker {
+    border-top: 1px solid var(--color-fg);
+    border-bottom: 1px solid var(--color-fg);
+    overflow: hidden;
+    padding-block: 2px;
+  }
+
+  .marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee 24s linear infinite;
+  }
+
+  .marquee__track {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 0.75rem;
+    padding-inline: 0.375rem;
+  }
+
+  .marquee__item {
+    font-family: var(--font-mono, ui-monospace);
+    font-size: 0.6875rem; /* 11px */
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+  }
+
+  .marquee__item::after {
+    content: '·';
+    margin-left: 0.75rem;
+    font-weight: 700;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee { animation: none; }
+  }
+
+  /* -------- Golden seal on last card -------- */
+  .case-card--sealed .case-card__media {
+    position: relative;
+  }
+
+  .case-card__seal {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: clamp(4rem, 6vw, 6.25rem);
+    height: auto;
+    pointer-events: none;
+  }
+
+  /* ================= Philosophy ================= */
+  .philosophy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-2);
+    padding-block: var(--space-12);
+    margin-top: var(--space-12);
+  }
+
+  .philosophy__label {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--fs-base);
+    color: var(--color-fg);
+    margin: 0;
+    max-width: none;
+  }
+
+  .philosophy__heading {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--fs-2xl);
+    line-height: var(--lh-snug);
+    letter-spacing: var(--tracking-loose);
+    color: var(--color-fg);
+    margin: 0;
+    max-width: none;
+  }
+
+  /* ================= Passion projects ================= */
+  .passion {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+  }
+
+  .passion__heading {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 0.5rem + 7vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-align: center;
+    color: var(--color-fg);
+    margin: 0;
+  }
+
+  /* Wraps the second 's' in "Passion" — the 's' is transparent so it
+     reserves the letter's space while the scribble stands in visually. */
+  .passion__s {
+    position: relative;
+    display: inline-block;
+    color: transparent;
+  }
+
+  .passion__scribble {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* Scribble SVG natural aspect 99:147 — size relative to cap height */
+    height: 1.15em;
+    aspect-ratio: 99 / 147;
+    transform: translate(-50%, -50%) rotate(-4deg);
+    pointer-events: none;
+  }
+
+  .passion__scribble :global(svg) {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  /* -------- Bookshelf -------- */
+  .shelf {
+    display: flex;
+    align-items: stretch;
+    border-block: 2px solid var(--color-fg);
+    min-height: 44rem;
+  }
+
+  /* Book is a row: spine on the left, content expands to the right.
+     Spine and content are absolutely positioned so the flex transition
+     only animates the book's width — never its height — avoiding the
+     layout "bounce" when switching projects. */
+  .book {
+    position: relative;
+    flex: 0 0 10rem;
+    border-left: 2px solid var(--color-fg);
+    overflow: hidden;
+    transition: flex-basis var(--dur-base) var(--ease-out),
+      flex-grow var(--dur-base) var(--ease-out);
+  }
+
+  .book:last-child {
+    border-right: 2px solid var(--color-fg);
+  }
+
+  .book--open {
+    flex: 1 1 0;
+  }
+
+  .book--empty {
+    flex: 1 1 10rem;
+    min-width: 10rem;
+  }
+
+  /* Spine — fixed-width left rail, vertical title anchored to the bottom */
+  .book__spine {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-block: var(--space-8);
+    padding-inline: 3.5rem; /* 56px each side */
+    background: transparent;
+    border: 0;
+    cursor: pointer;
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: var(--fs-xl);
+    letter-spacing: var(--tracking-loose);
+    white-space: nowrap;
+  }
+
+  .book__spine span {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .book__spine:focus-visible {
+    outline: 3px solid var(--color-mark-blue);
+    outline-offset: -6px;
+  }
+
+  .book--open .book__spine {
+    cursor: default;
+  }
+
+  .book__content {
+    position: absolute;
+    left: 10rem;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: none;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding: var(--space-6) var(--space-10) var(--space-6) 0;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .book--open .book__content {
+    display: flex;
+  }
+
+  .book__qr {
+    width: clamp(6rem, 12vw, 10rem);
+    height: auto;
+    display: block;
+  }
+
+  .book__desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: var(--fs-base);
+    line-height: var(--lh-base);
+    color: var(--color-fg);
+    margin: 0;
+    max-width: none;
+  }
+
+  .book__desc b {
+    font-weight: 700;
+  }
+
+  /* -------- Shared pill button (also used by connect) -------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    border: 2px solid var(--color-fg);
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    font-weight: 500;
+    font-size: var(--fs-base);
+    line-height: 1;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .btn:hover {
+    background: var(--color-fg);
+    color: var(--color-bg);
+    text-decoration: none;
+  }
+
+  .btn :global(svg) {
+    width: 1.1em;
+    height: 1.1em;
+  }
+
+  .book__cta {
+    align-self: flex-start;
+    width: 8.75rem;      /* 140px */
+    min-width: 0;        /* override global .btn min-width: 200px */
+    height: 3rem;        /* 48px */
+    padding: 0 var(--space-3);
+    font-size: var(--fs-sm);
+    justify-content: space-between;
+  }
+
+  /* -------- Shelf navigation -------- */
+  .shelf__nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: var(--space-4);
+  }
+
+  .shelf__btn {
+    width: 5rem;
+    height: 5rem;
+    border: 2px solid var(--color-fg);
+    border-radius: var(--radius-full);
+    background: var(--color-bg);
+    color: var(--color-fg);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background var(--dur-fast) var(--ease-out),
+      color var(--dur-fast) var(--ease-out);
+  }
+
+  .shelf__btn:hover {
+    background: var(--color-fg);
+    color: var(--color-bg);
+  }
+
+  .shelf__btn:focus-visible {
+    outline: 3px solid var(--color-mark-blue);
+    outline-offset: 3px;
+  }
+
+  .shelf__btn :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  /* Mobile: stack books vertically, show all content, hide spines & nav */
+  @media (max-width: 768px) {
+    .shelf {
+      flex-direction: column;
+      min-height: 0;
+    }
+
+    .book {
+      flex: 1 1 auto;
+      border-left: 0;
+      border-top: 2px solid var(--color-fg);
+    }
+
+    .book:first-child {
+      border-top: 0;
+    }
+
+    .book:last-child {
+      border-right: 0;
+    }
+
+    .book--empty {
+      display: none;
+    }
+
+    .book__spine {
+      display: none;
+    }
+
+    .book__content {
+      display: flex;
+    }
+
+    .shelf__nav {
+      display: none;
+    }
+  }
+
+  /* ================= Let's connect ================= */
+  .connect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-6);
+    margin-top: var(--space-12);
+  }
+
+  .connect__heading {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 0.5rem + 7vw, 6.5rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-fg);
+    margin: 0;
+  }
+
+  .connect__apos {
+    color: var(--color-mark-green);
+  }
+
+  .connect__desc {
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: var(--fs-lg);
+    line-height: var(--lh-base);
+    color: var(--color-fg);
+    margin: 0;
+  }
+
+  .connect__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-4);
+    margin-top: var(--space-2);
+  }
+
+  .connect__btn {
+    min-width: 10rem;
+    justify-content: center;
+    padding-block: 0.875rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .connect__btn-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: transform var(--dur-base, 200ms) var(--ease-out, ease-out);
+  }
+
+  .connect__btn-brand {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-100%);
+    transition: transform var(--dur-base, 200ms) var(--ease-out, ease-out);
+  }
+
+  .connect__btn-brand :global(svg) {
+    width: 1.25em;
+    height: 1.25em;
+  }
+
+  .connect__btn:hover .connect__btn-text {
+    transform: translateY(calc(100% + 1.5rem));
+  }
+
+  .connect__btn:hover .connect__btn-brand {
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .connect__btn-text,
+    .connect__btn-brand {
+      transition: none;
+    }
+  }
+
+  /* ================= Monocle cursor ================= */
+  .monocle {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 7.5rem;  /* 120px */
+    height: 7.5rem;
+    border-radius: 50%;
+    /* Translucent fill + white gradient border via background-clip trick */
+    background:
+      linear-gradient(rgba(255, 252, 245, 0.08), rgba(255, 252, 245, 0.03))
+        padding-box,
+      linear-gradient(
+          160deg,
+          rgba(255, 252, 245, 0.95),
+          rgba(255, 252, 245, 0.3) 50%,
+          rgba(255, 252, 245, 0.85)
+        )
+        border-box;
+    border: 1.5px solid transparent;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0;
+    display: grid;
+    place-items: center;
+    transform: translate3d(-9999px, -9999px, 0);
+    transition: opacity 150ms var(--ease-out, ease-out);
+    will-change: transform, opacity;
+    box-shadow:
+      inset 0 1px 1px rgba(255, 255, 255, 0.5),
+      0 2px 4px rgba(0, 0, 0, 0.28),
+      0 1px 1px rgba(0, 0, 0, 0.22);
+  }
+
+  .monocle--active {
+    opacity: 1;
+  }
+
+  .monocle__ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+  }
+
+  .monocle__text {
+    font-family: var(--font-sans, ui-monospace);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    fill: var(--color-fg);
+  }
+
+  .monocle__icon {
+    position: relative;
+    display: grid;
+    place-items: center;
+    color: var(--color-fg);
+  }
+
+  .monocle__icon :global(svg) {
+    width: 40px;
+    height: 40px;
+  }
+
+
+  @media (hover: none), (pointer: coarse) {
+    .monocle { display: none; }
+  }
+
+  /* Hide native cursor over the interactive targets so the monocle stands alone */
+  @media (hover: hover) and (pointer: fine) {
+    .case-card,
+    .book:not(.book--open) .book__spine {
+      cursor: none;
+    }
+  }
+</style>

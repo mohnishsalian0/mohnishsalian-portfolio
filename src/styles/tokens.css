@@ -1,0 +1,114 @@
+/* ---------- Primitives ---------- */
+/* Raw palette values. Components should not reference these directly. */
+:root {
+  --c-white:      #ffffff;
+  --c-paper:      #fffcf5;
+  --c-gray-50:    #fafafa;
+  --c-gray-100:   #f4f4f3;
+  --c-gray-200:   #e7e6e4;
+  --c-gray-300:   #d1cfcb;
+  --c-gray-500:   #807d76;
+  --c-gray-700:   #464441;
+  --c-gray-900:   #1a1917;
+  --c-black:      #000000;
+  --c-mark-green: #51c200;
+  --c-mark-fluor: #dbfb42;
+  --c-mark-blue:  #3a91ef;
+}
+
+/* ---------- Semantic tokens ---------- */
+/* The only layer components should touch. Swap under [data-theme="dark"] later. */
+:root {
+  --color-bg:         var(--c-paper);
+  --color-fg:         var(--c-black);
+  --color-muted:      var(--c-gray-500);
+  --color-surface:    var(--c-gray-50);
+  --color-border:     var(--c-gray-200);       /* subtle separators only; strong card borders use --color-fg directly */
+  --color-accent:     var(--c-black);          /* secondary emphasis — borders, buttons, focus */
+  --color-accent-fg:  var(--c-paper);          /* text/glyph color when placed on --color-accent */
+  --color-mark-green: var(--c-mark-green);     /* decorative text highlight */
+  --color-mark-fluor: var(--c-mark-fluor);     /* decorative text highlight */
+  --color-mark-blue:  var(--c-mark-blue);      /* decorative text/shape highlight */
+}
+
+/* ---------- Typography ---------- */
+:root {
+  --font-heading: var(--font-serif);
+  --font-body:    var(--font-sans);
+  /* --font-mono is injected by the Astro fonts config (JetBrains Mono) */
+
+  --fs-xs:   clamp(0.75rem,  0.72rem + 0.15vw, 0.8125rem);
+  --fs-sm:   clamp(0.875rem, 0.83rem + 0.22vw, 0.9375rem);
+  --fs-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
+  --fs-lg:   clamp(1.25rem,  1.15rem + 0.5vw,  1.5rem);
+  --fs-xl:   clamp(1.5rem,   1.35rem + 0.75vw, 1.875rem);
+  --fs-2xl:  clamp(2rem,     1.7rem + 1.5vw,   2.75rem);
+  --fs-3xl:  clamp(2.5rem,   2rem + 2.5vw,     3.75rem);
+  --fs-4xl:  clamp(3.25rem,  2.4rem + 4.25vw,  5.5rem);
+  --fs-hero: clamp(3.5rem,   1.5rem + 9vw,     8rem);
+
+  --lh-tight: 1.1;
+  --lh-snug:  1.25;
+  --lh-base:  1.6;
+  --lh-loose: 1.75;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0em;
+  --tracking-loose:  0.01em;
+  --tracking-wide:   0.08em;
+}
+
+/* ---------- Spacing ---------- */
+:root {
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.5rem;
+  --space-6:  2.5rem;
+  --space-8:  3rem;
+  --space-10: 4rem;
+  --space-12: 6rem;
+  --space-16: 8rem;
+  --space-24: 12rem;
+}
+
+/* ---------- Radii ---------- */
+:root {
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   16px;
+  --radius-pill: 25px;
+  --radius-full: 9999px;
+}
+
+/* ---------- Motion ---------- */
+:root {
+  --ease-out:    cubic-bezier(0.2, 0, 0, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast:    150ms;
+  --dur-base:    300ms;
+  --dur-slow:    600ms;
+  --dur-curtain: 900ms;
+}
+
+/* ---------- Layout ---------- */
+:root {
+  --content-max:    75rem;     /* 1200px */
+  --content-narrow: 40rem;
+  --nav-height:     6.25rem;   /* 100px, matches design top bar */
+  --page-padding-x: clamp(1.25rem, 6vw, 8rem);   /* 20px on phone → 128px at 1440px+ */
+}
+
+/* ---------- Dark mode (scaffolded, activate later) ---------- */
+/*
+:root[data-theme="dark"] {
+  --color-bg:       var(--c-black);
+  --color-fg:       var(--c-gray-100);
+  --color-muted:    var(--c-gray-500);
+  --color-surface:  var(--c-gray-900);
+  --color-border:   var(--c-gray-700);
+  --color-accent:   var(--c-paper);
+  --color-accent-fg: var(--c-black);
+}
+*/

@@ -1,0 +1,111 @@
+---
+import logo from '~/assets/logo.svg';
+
+const timeFormatter = new Intl.DateTimeFormat('en-US', {
+  timeZone: 'Asia/Kolkata',
+  hour: 'numeric',
+  minute: '2-digit',
+  hour12: true,
+});
+const initialTime = timeFormatter.format(new Date());
+---
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__inner">
+    <a href="/" class="nav__brand" aria-label="Home" data-logo-slot>
+      <img
+        src={logo.src}
+        width={logo.width}
+        height={logo.height}
+        alt="MS"
+        class="nav__logo"
+      />
+    </a>
+
+    <p class="nav__meta">
+      <span class="nav__place">Mumbai, India.</span>
+      <time class="nav__clock" data-nav-clock>{initialTime}</time>
+    </p>
+  </div>
+</nav>
+
+<script>
+  const formatter = new Intl.DateTimeFormat('en-US', {
+    timeZone: 'Asia/Kolkata',
+    hour: 'numeric',
+    minute: '2-digit',
+    hour12: true,
+  });
+
+  function renderClock() {
+    const el = document.querySelector<HTMLTimeElement>('[data-nav-clock]');
+    if (!el) return;
+    el.textContent = formatter.format(new Date());
+  }
+
+  renderClock();
+
+  // Align the first tick to the start of the next minute, then tick every 60s.
+  const msUntilNextMinute = 60_000 - (Date.now() % 60_000);
+  setTimeout(() => {
+    renderClock();
+    setInterval(renderClock, 60_000);
+  }, msUntilNextMinute);
+</script>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--color-bg);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-5);
+    max-width: var(--content-max);
+    margin-inline: auto;
+    height: var(--nav-height);
+    padding-inline: var(--page-padding-x);
+  }
+
+  .nav__brand {
+    display: inline-flex;
+    align-items: center;
+    color: var(--color-fg);
+    text-decoration: none;
+  }
+
+  .nav__logo {
+    height: 4rem;
+    width: auto;
+    display: block;
+  }
+
+  .nav__meta {
+    margin: 0;
+    max-width: none;
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--color-fg);
+    letter-spacing: 0;
+    display: inline-flex;
+    gap: 0.4ch;
+    white-space: nowrap;
+  }
+
+  .nav__clock {
+    font-variant-numeric: tabular-nums;
+  }
+
+  @media (max-width: 480px) {
+    .nav__place {
+      display: none;
+    }
+  }
+</style>

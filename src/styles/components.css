@@ -1,0 +1,99 @@
+/* ---------- Shared display/text utilities ---------- */
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+.lede {
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 0.8rem + 2.2vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.4;
+  max-width: none;
+}
+
+.display-outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-fg);
+}
+
+.mark-green { color: var(--color-mark-green); }
+.mark-fluor { color: var(--color-mark-fluor); }
+.mark-blue  { color: var(--color-mark-blue); }
+
+/* Monospace treatment for timestamps, locations, inline numerics */
+.mono {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0;
+}
+
+/* ---------- Pill / chip ---------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 32px;
+  padding: 0 12px;
+  border: 2px solid var(--color-fg);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: var(--tracking-tight);
+  white-space: nowrap;
+}
+
+/* ---------- Button ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  height: 72px;
+  min-width: 200px;
+  padding: 0 24px;
+  border: 2px solid var(--color-fg);
+  background: transparent;
+  color: var(--color-fg);
+  font-family: var(--font-body);
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: var(--tracking-tight);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover {
+  background: var(--color-fg);
+  color: var(--color-accent-fg);
+  opacity: 1;
+}
+
+.btn--sm {
+  height: 48px;
+  min-width: 160px;
+  font-size: 1rem;
+}
+
+/* ---------- Card ---------- */
+
+.card {
+  border: 2px solid var(--color-fg);
+  background: var(--color-bg);
+  /* sharp corners intentional — no border-radius */
+}

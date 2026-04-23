@@ -1,0 +1,95 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+
+const placeholders = [
+  { title: 'Case study one', year: '2025', summary: 'Short description of the project and its outcome.' },
+  { title: 'Case study two', year: '2024', summary: 'Short description of the project and its outcome.' },
+  { title: 'Case study three', year: '2024', summary: 'Short description of the project and its outcome.' },
+];
+---
+
+<BaseLayout title="Work" description="Selected projects by Mohnish Salian.">
+  <section class="work">
+    <header class="work__header">
+      <p class="work__eyebrow">Selected work</p>
+      <h1>Things I've made, shipped, or shaped.</h1>
+    </header>
+
+    <ul class="work__list" role="list">
+      {placeholders.map((item) => (
+        <li class="work__item">
+          <a href="#" class="work__link">
+            <div class="work__meta"><small>{item.year}</small></div>
+            <h3 class="work__title">{item.title}</h3>
+            <p class="work__summary">{item.summary}</p>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .work__header {
+    margin-bottom: var(--space-10);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+
+  .work__eyebrow {
+    font-size: var(--fs-sm);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+    color: var(--color-muted);
+    margin: 0;
+  }
+
+  .work__list {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .work__item {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .work__item + .work__item {
+    margin-top: 0;
+  }
+
+  .work__link {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: var(--space-8);
+    padding-block: var(--space-6);
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--dur-base) var(--ease-out);
+  }
+
+  .work__link:hover {
+    color: var(--color-accent);
+  }
+
+  .work__meta {
+    color: var(--color-muted);
+    grid-row: 1 / span 2;
+  }
+
+  .work__title {
+    font-size: var(--fs-2xl);
+    margin: 0;
+  }
+
+  .work__summary {
+    grid-column: 2;
+    color: var(--color-muted);
+    margin-top: var(--space-2);
+    max-width: 50ch;
+  }
+</style>
