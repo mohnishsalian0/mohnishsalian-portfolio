@@ -9,6 +9,8 @@ import laurelL from '~/assets/laurel-wreath-l.png';
 import laurelR from '~/assets/laurel-wreath-r.png';
 import goldenSeal from '~/assets/golden-seal.png';
 import qrismQr from '~/assets/qrism-qr.png';
+import watchparty from '~/assets/watchparty.png';
+import scoot from '~/assets/scoot.png';
 
 const tickerWord = 'Ongoing';
 const tickerItems = Array.from({ length: 12 }, () => tickerWord);
@@ -44,7 +46,7 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     </h2>
 
     <div class="work__cards">
-      <a href="#" class="case-card case-card--featured">
+			<a href="/work" class="case-card case-card--featured">
         <div class="case-card__body">
           <div class="case-card__award" aria-label="Best case study">
             <Image src={laurelL} alt="" class="case-card__laurel" />
@@ -132,72 +134,94 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
 
     <div class="shelf" data-shelf>
       <article class="book book--open" data-book>
-        <button class="book__spine" type="button" data-spine>
-          <span>Qrism &mdash; A high capacity QR</span>
-        </button>
-        <div class="book__content">
-          <Image src={qrismQr} alt="Qrism multicolor QR code" class="book__qr" />
-          <p class="book__desc">
-            Qrism is a performant and reliable Rust library for generating and
-            reading QR codes. Supports multicolor QR for enhanced storage
-            capacity alongside traditional black &amp; white QR. Multicolor QR
-            can store <b>3x times</b> more data than regular QR.
-          </p>
-          <a class="btn book__cta" href="#">
+        <div class="book__header">
+          <button class="book__spine" type="button" data-spine>
+            <span>Qrism &mdash; A high capacity QR</span>
+          </button>
+          <a class="btn book__cta" href="https://github.com/mohnishsalian0/qrism" target="_blank" rel="noopener noreferrer">
             Github <Icon name="lucide:arrow-up-right" />
           </a>
+        </div>
+        <div class="book__panel">
+          <div class="book__content">
+            <Image src={qrismQr} alt="Qrism multicolor QR code" class="book__qr" />
+            <p class="book__desc">
+              Qrism is a performant and reliable Rust library for generating and
+              reading QR codes. Supports multicolor QR for enhanced storage
+              capacity alongside traditional black &amp; white QR. Multicolor QR
+              can store <b>3x times</b> more data than regular QR. The library
+              has received <b>1500+</b> downloads.
+            </p>
+            <ul class="book__tags" role="list">
+              <li class="tag">🛠️ Development</li>
+              <li class="tag">🦀 Rust</li>
+              <li class="tag">👁️ Computer vision</li>
+            </ul>
+          </div>
         </div>
       </article>
 
       <article class="book" data-book>
-        <button class="book__spine" type="button" data-spine>
-          <span>Watchparty &mdash; Co-watch movies</span>
-        </button>
-        <div class="book__content">
-          <p class="book__desc">
-            A synchronized video watch-party app that keeps playback in lockstep
-            across friends, complete with a side-by-side chat and reactions.
-          </p>
-          <a class="btn book__cta" href="#">
+        <div class="book__header">
+          <button class="book__spine" type="button" data-spine>
+            <span>Watchparty &mdash; Co-watch movies</span>
+          </button>
+          <a class="btn book__cta" href="https://github.com/mohnishsalian0/watch-party" target="_blank" rel="noopener noreferrer">
             Github <Icon name="lucide:arrow-up-right" />
           </a>
+        </div>
+        <div class="book__panel">
+          <div class="book__content">
+            <Image src={watchparty} alt="Watchparty app preview" class="book__media" />
+            <p class="book__desc">
+              Watchparty is a Chrome extension that turns <b>any online video</b>
+              into a shared living room, whether it&rsquo;s on YouTube, Netflix,
+              Prime, or anywhere else. Pick a memoji, create a lobby, share the
+              link, and every play, pause, scrub, and mute syncs instantly across
+              viewers. Float reactions from an emote tray and chat alongside the
+              video, all without leaving the page.
+            </p>
+            <ul class="book__tags" role="list">
+              <li class="tag">🎨 Design</li>
+              <li class="tag">🛠️ Development</li>
+              <li class="tag">🧩 Chrome extension</li>
+              <li class="tag">🔌 Websocket server</li>
+            </ul>
+          </div>
         </div>
       </article>
 
       <article class="book" data-book>
-        <button class="book__spine" type="button" data-spine>
-          <span>Rusciii &mdash; A rust based ascii art generator</span>
-        </button>
-        <div class="book__content">
-          <p class="book__desc">
-            A terminal-first ASCII art generator written in Rust. Converts
-            images and live camera feeds into dense, legible character art.
-          </p>
-          <a class="btn book__cta" href="#">
-            Github <Icon name="lucide:arrow-up-right" />
+        <div class="book__header">
+          <button class="book__spine" type="button" data-spine>
+            <span>Scoot &mdash; Reimagining micromobility</span>
+          </button>
+          <a class="btn book__cta" href="https://www.behance.net/gallery/177697167/Scoot-a-micromobility-sharing-app" target="_blank" rel="noopener noreferrer">
+            Behance <Icon name="lucide:arrow-up-right" />
           </a>
         </div>
+        <div class="book__panel">
+          <div class="book__content">
+            <Image src={scoot} alt="Scoot app screens" class="book__media" />
+            <p class="book__desc">
+              A UX design challenge to put micromobility back on its upward
+              trajectory after the pandemic. Scoot rethinks the e-scooter app
+              around three problems operators actually struggle with: fleet
+              rebalancing, vehicle abuse, and rider safety. Return-trip
+              discounts and drop-off incentives nudge riders to redistribute the
+              fleet, image-based parking checks and security deposits curb
+              misuse, and a Web3 layer rewards riders with <b>carbon-credit-backed
+              tokens</b> instead of platform-locked coins.
+            </p>
+            <ul class="book__tags" role="list">
+              <li class="tag">🎨 UX design</li>
+              <li class="tag">🛴 Micromobility</li>
+              <li class="tag">🌱 Sustainability</li>
+              <li class="tag">⛓️ Web3</li>
+            </ul>
+          </div>
+        </div>
       </article>
-
-    </div>
-
-    <div class="shelf__nav" aria-label="Passion projects navigation">
-      <button
-        type="button"
-        class="shelf__btn"
-        data-prev
-        aria-label="Previous project"
-      >
-        <Icon name="lucide:arrow-left" />
-      </button>
-      <button
-        type="button"
-        class="shelf__btn"
-        data-next
-        aria-label="Next project"
-      >
-        <Icon name="lucide:arrow-right" />
-      </button>
     </div>
   </section>
 
@@ -241,7 +265,7 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     </p>
 
     <div class="connect__buttons">
-      <a class="btn connect__btn" href="#">
+			<a class="btn connect__btn" href="https://www.linkedin.com/in/mohnish-salian-1471a217a" target="_blank" rel="noopener noreferrer">
         <span class="connect__btn-text">
           LinkedIn <Icon name="lucide:arrow-up-right" />
         </span>
@@ -249,7 +273,7 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
           <Icon name="simple-icons:linkedin" />
         </span>
       </a>
-      <a class="btn connect__btn" href="#">
+			<a class="btn connect__btn" href="https://github.com/mohnishsalian0" target="_blank" rel="nooperner noreferrer" aria-label="GitHub">
         <span class="connect__btn-text">
           Github <Icon name="lucide:arrow-up-right" />
         </span>
@@ -257,7 +281,7 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
           <Icon name="simple-icons:github" />
         </span>
       </a>
-      <a class="btn connect__btn" href="#">
+        <a class="btn connect__btn" href="https://www.behance.net/mohnishsalian" target="_blank" rel="nooperner noreferrer" aria-label="Behance">
         <span class="connect__btn-text">
           Behance <Icon name="lucide:arrow-up-right" />
         </span>
@@ -277,26 +301,14 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     );
     if (books.length === 0) return;
 
-    const container = shelf.parentElement;
-    const prev = container?.querySelector<HTMLButtonElement>('[data-prev]');
-    const next = container?.querySelector<HTMLButtonElement>('[data-next]');
-
-    let idx = books.findIndex((b) => b.classList.contains('book--open'));
-    if (idx < 0) idx = 0;
-
     const setOpen = (i: number) => {
-      const n = books.length;
-      idx = ((i % n) + n) % n;
-      books.forEach((b, bi) => b.classList.toggle('book--open', bi === idx));
+      books.forEach((b, bi) => b.classList.toggle('book--open', bi === i));
     };
 
     books.forEach((book, i) => {
       const spine = book.querySelector<HTMLButtonElement>('[data-spine]');
       spine?.addEventListener('click', () => setOpen(i));
     });
-
-    prev?.addEventListener('click', () => setOpen(idx - 1));
-    next?.addEventListener('click', () => setOpen(idx + 1));
   });
 
   // Monocle cursor — shown on hover of case cards and closed book spines.
@@ -883,52 +895,30 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     overflow: visible;
   }
 
-  /* -------- Bookshelf -------- */
+  /* -------- Bookshelf (vertical accordion) -------- */
   .shelf {
     display: flex;
-    align-items: stretch;
-    border-block: 2px solid var(--color-fg);
-    min-height: 44rem;
+    flex-direction: column;
+    border-top: 2px solid var(--color-fg);
   }
 
-  /* Book is a row: spine on the left, content expands to the right.
-     Spine and content are absolutely positioned so the flex transition
-     only animates the book's width — never its height — avoiding the
-     layout "bounce" when switching projects. */
   .book {
-    position: relative;
-    flex: 0 0 10rem;
-    border-left: 2px solid var(--color-fg);
-    overflow: hidden;
-    transition: flex-basis var(--dur-base) var(--ease-out),
-      flex-grow var(--dur-base) var(--ease-out);
+    border-bottom: 2px solid var(--color-fg);
   }
 
-  .book:last-child {
-    border-right: 2px solid var(--color-fg);
-  }
-
-  .book--open {
-    flex: 1 1 0;
-  }
-
-  .book--empty {
-    flex: 1 1 10rem;
-    min-width: 10rem;
-  }
-
-  /* Spine — fixed-width left rail, vertical title anchored to the bottom */
-  .book__spine {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 10rem;
+  .book__header {
     display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-block: var(--space-8);
-    padding-inline: 3.5rem; /* 56px each side */
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-6);
+    padding: var(--space-6) 0;
+  }
+
+  .book__spine {
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    padding: 0;
     background: transparent;
     border: 0;
     cursor: pointer;
@@ -937,12 +927,6 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     font-weight: 700;
     font-size: var(--fs-xl);
     letter-spacing: var(--tracking-loose);
-    white-space: nowrap;
-  }
-
-  .book__spine span {
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
   }
 
   .book__spine:focus-visible {
@@ -954,27 +938,43 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     cursor: default;
   }
 
-  .book__content {
-    position: absolute;
-    left: 10rem;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    display: none;
-    flex-direction: column;
-    gap: var(--space-6);
-    padding: var(--space-6) var(--space-10) var(--space-6) 0;
-    box-sizing: border-box;
+  .book__panel {
+    display: grid;
+    grid-template-rows: minmax(0, 0fr);
     overflow: hidden;
+    transition: grid-template-rows 200ms var(--ease-out);
   }
 
-  .book--open .book__content {
+  .book--open .book__panel {
+    grid-template-rows: minmax(0, 1fr);
+  }
+
+  .book__content {
+    min-height: 0;
+    overflow: hidden;
     display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .book__panel { transition: none; }
   }
 
   .book__qr {
     width: clamp(6rem, 12vw, 10rem);
     height: auto;
+    display: block;
+  }
+
+  .book__media {
+    align-self: flex-start;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 24rem;
+    object-fit: contain;
     display: block;
   }
 
@@ -990,6 +990,15 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
 
   .book__desc b {
     font-weight: 700;
+  }
+
+  .book__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
   /* -------- Shared pill button (also used by connect) -------- */
@@ -1028,84 +1037,8 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     min-width: 0;        /* override global .btn min-width: 200px */
     height: 3rem;        /* 48px */
     padding: 0 var(--space-3);
-    font-size: var(--fs-sm);
+    font-size: var(--fs-base);
     justify-content: space-between;
-  }
-
-  /* -------- Shelf navigation -------- */
-  .shelf__nav {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: var(--space-4);
-  }
-
-  .shelf__btn {
-    width: 5rem;
-    height: 5rem;
-    border: 2px solid var(--color-fg);
-    border-radius: var(--radius-full);
-    background: var(--color-bg);
-    color: var(--color-fg);
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background var(--dur-fast) var(--ease-out),
-      color var(--dur-fast) var(--ease-out);
-  }
-
-  .shelf__btn:hover {
-    background: var(--color-fg);
-    color: var(--color-bg);
-  }
-
-  .shelf__btn:focus-visible {
-    outline: 3px solid var(--color-mark-blue);
-    outline-offset: 3px;
-  }
-
-  .shelf__btn :global(svg) {
-    width: 1.25rem;
-    height: 1.25rem;
-  }
-
-  /* Mobile: stack books vertically, show all content, hide spines & nav */
-  @media (max-width: 768px) {
-    .shelf {
-      flex-direction: column;
-      min-height: 0;
-    }
-
-    .book {
-      flex: 1 1 auto;
-      border-left: 0;
-      border-top: 2px solid var(--color-fg);
-    }
-
-    .book:first-child {
-      border-top: 0;
-    }
-
-    .book:last-child {
-      border-right: 0;
-    }
-
-    .book--empty {
-      display: none;
-    }
-
-    .book__spine {
-      display: none;
-    }
-
-    .book__content {
-      display: flex;
-    }
-
-    .shelf__nav {
-      display: none;
-    }
   }
 
   /* ================= Let's connect ================= */

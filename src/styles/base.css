@@ -81,7 +81,7 @@ ol {
   line-height: var(--lh-base);
 }
 
-li + li {
+:where(ul, ol):not([role='list']) li + li {
   margin-top: var(--space-1);
 }
 

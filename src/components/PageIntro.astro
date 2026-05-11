@@ -1,0 +1,192 @@
+---
+// First-visit intro: traces M, then S, fades in the dotted detail,
+// then FLIPs the logo to the nav slot while the backdrop retracts
+// toward the top-left to reveal the page.
+---
+
+<div class="intro" data-intro aria-hidden="true">
+  <div class="intro__logo" data-intro-logo>
+    <svg
+      width="58"
+      height="67"
+      viewBox="0 0 58 67"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <g stroke="currentColor" stroke-linecap="round">
+        <path
+          data-intro-path="m"
+          stroke-linejoin="round"
+          stroke-width="3"
+          d="m29 65 27.5-16-.5-31-27 15.5L1.5 18v31"
+        />
+        <path
+          data-intro-path="s"
+          stroke-linejoin="round"
+          stroke-width="3"
+          d="m29 65 27.5-16-.5-31-27 15.5L1.5 18 29 1.5"
+        />
+        <path
+          data-intro-path="dots"
+          stroke-dasharray="6 4"
+          d="M29 33.5V65L1.5 49m54-30L29 2"
+        />
+      </g>
+    </svg>
+  </div>
+</div>
+
+<script>
+  const overlay = document.querySelector<HTMLElement>('[data-intro]');
+  const logoWrap = document.querySelector<HTMLElement>('[data-intro-logo]');
+  const pathM = document.querySelector<SVGPathElement>('[data-intro-path="m"]');
+  const pathS = document.querySelector<SVGPathElement>('[data-intro-path="s"]');
+  const pathDots = document.querySelector<SVGPathElement>(
+    '[data-intro-path="dots"]'
+  );
+  const navLogo = document.querySelector<HTMLElement>('[data-logo-slot]');
+
+  if (!overlay || !logoWrap || !pathM || !pathS || !pathDots || !navLogo) {
+    // Nothing to do.
+  } else {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduced) {
+      overlay.remove();
+    } else {
+      void runIntro({ overlay, logoWrap, pathM, pathS, pathDots, navLogo });
+    }
+  }
+
+  async function runIntro(els: {
+    overlay: HTMLElement;
+    logoWrap: HTMLElement;
+    pathM: SVGPathElement;
+    pathS: SVGPathElement;
+    pathDots: SVGPathElement;
+    navLogo: HTMLElement;
+  }) {
+    const { overlay, logoWrap, pathM, pathS, pathDots, navLogo } = els;
+
+    // Prime the solid paths for tracing: fully hidden via dashoffset.
+    // M uses a NEGATIVE starting offset so the stroke fills from the path's
+    // end point (bottom-left in the source SVG) — that reads as left-to-right.
+    // S fills from its start (bottom-center) upward, which follows naturally
+    // from where M lands.
+    const lenM = pathM.getTotalLength();
+    const lenS = pathS.getTotalLength();
+    pathM.style.strokeDasharray = `${lenM}`;
+    pathM.style.strokeDashoffset = `${-lenM}`;
+    pathS.style.strokeDasharray = `${lenS}`;
+    pathS.style.strokeDashoffset = `${lenS}`;
+    pathDots.style.opacity = '0';
+
+    // Wait for the page to be ready and for the overlay's idle state to
+    // actually paint before kicking off the sequence. Without this, the
+    // script can start animating while the browser is still doing its first
+    // paint, so the first visible frame is already mid-trace.
+    if (document.readyState !== 'complete') {
+      await new Promise<void>((r) =>
+        window.addEventListener('load', () => r(), { once: true })
+      );
+    }
+    await new Promise<void>((r) => requestAnimationFrame(() => r()));
+    await new Promise<void>((r) => requestAnimationFrame(() => r()));
+
+    // Ease that starts firmly and settles — feels deliberate for a signature.
+    const traceEase = 'cubic-bezier(0.65, 0, 0.35, 1)';
+
+    const traceM = pathM.animate(
+      [{ strokeDashoffset: `${-lenM}` }, { strokeDashoffset: '0' }],
+      { duration: 550, easing: traceEase, fill: 'forwards' }
+    );
+
+    // Slight overlap — S starts before M fully settles, keeps momentum.
+    await wait(380);
+
+    const traceS = pathS.animate(
+      [{ strokeDashoffset: `${lenS}` }, { strokeDashoffset: '0' }],
+      { duration: 550, easing: traceEase, fill: 'forwards' }
+    );
+
+    await Promise.all([traceM.finished, traceS.finished]);
+
+    // Dotted detail fades in — tracing it conflicts with its stroke-dasharray.
+    const fadeDots = pathDots.animate(
+      [{ opacity: 0 }, { opacity: 1 }],
+      { duration: 260, easing: 'ease-out', fill: 'forwards' }
+    );
+    await fadeDots.finished;
+
+    // Brief hold so the completed mark can read.
+    await wait(140);
+
+    // FLIP: measure where the overlay logo currently sits vs. the nav logo,
+    // then animate the delta on transform only.
+    const from = logoWrap.getBoundingClientRect();
+    const to = navLogo.getBoundingClientRect();
+    const dx = to.left + to.width / 2 - (from.left + from.width / 2);
+    const dy = to.top + to.height / 2 - (from.top + from.height / 2);
+    const scale = to.height / from.height;
+
+    const flight = logoWrap.animate(
+      [
+        { transform: 'translate(0, 0) scale(1)' },
+        { transform: `translate(${dx}px, ${dy}px) scale(${scale})` },
+      ],
+      { duration: 620, easing: 'cubic-bezier(0.7, 0, 0.2, 1)', fill: 'forwards' }
+    );
+
+    // Backdrop retracts toward top-left. clip-path composites cheaply.
+    // Strong ease-out so it launches off and settles into the corner.
+    const retract = overlay.animate(
+      [
+        { clipPath: 'inset(0 0 0 0)' },
+        { clipPath: 'inset(0 100% 100% 0)' },
+      ],
+      { duration: 620, easing: 'cubic-bezier(0.7, 0, 0.2, 1)', fill: 'forwards' }
+    );
+
+    await Promise.all([flight.finished, retract.finished]);
+    overlay.remove();
+  }
+
+  function wait(ms: number) {
+    return new Promise((r) => setTimeout(r, ms));
+  }
+</script>
+
+<style>
+  .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    display: grid;
+    place-items: center;
+    will-change: clip-path;
+    /* Start fully covering; JS animates clip-path to retract. */
+    clip-path: inset(0 0 0 0);
+  }
+
+  .intro__logo {
+    /* Size roughly matches the nav logo's visual weight at rest, scaled up. */
+    width: 7rem;
+    height: auto;
+    transform-origin: center center;
+    will-change: transform;
+  }
+
+  .intro__logo svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .intro {
+      display: none;
+    }
+  }
+</style>
