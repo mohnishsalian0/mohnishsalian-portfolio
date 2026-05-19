@@ -1,0 +1,30 @@
+---
+interface Props {
+  role: string;
+  team: string;
+  timeline: string;
+  company: string;
+  client: string;
+  status: string;
+}
+
+const { role, team, timeline, company, client, status } = Astro.props;
+
+const meta: Array<{ label: string; value: string }> = [
+  { label: 'Role', value: role },
+  { label: 'Team', value: team },
+  { label: 'Timeline', value: timeline },
+  { label: 'Company', value: company },
+  { label: 'Client', value: client },
+  { label: 'Status', value: status },
+];
+---
+
+<dl class="case-study-meta">
+  {meta.map((item) => (
+    <div class="case-study-meta__row">
+      <dt class="case-study-meta__label">{item.label}</dt>
+      <dd class="case-study-meta__value">{item.value}</dd>
+    </div>
+  ))}
+</dl>

@@ -1,0 +1,29 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  title: string;
+  subtitle: string;
+  liveUrl?: string;
+}
+
+const { title, subtitle, liveUrl } = Astro.props;
+---
+
+<header class="case-study-header">
+  <a href="/" class="case-study-header__back">
+    <Icon name="lucide:arrow-left" />
+    <span>Back to work</span>
+  </a>
+
+  <h1 class="case-study-header__title">{title}</h1>
+  <p class="lede case-study-header__lede">{subtitle}</p>
+
+  {liveUrl && (
+    <p class="case-study-header__live">
+      <a href={liveUrl} target="_blank" rel="noopener">
+        View live <Icon name="lucide:arrow-up-right" />
+      </a>
+    </p>
+  )}
+</header>

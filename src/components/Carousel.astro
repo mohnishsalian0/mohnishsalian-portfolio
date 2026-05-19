@@ -1,0 +1,107 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  label?: string;
+}
+
+const { label = 'Image carousel' } = Astro.props;
+---
+
+<div class="carousel" data-carousel aria-roledescription="carousel" aria-label={label}>
+  <div class="carousel__viewport" data-carousel-viewport>
+    <div class="carousel__track" data-carousel-track>
+      <slot />
+    </div>
+  </div>
+
+  <div class="carousel__controls">
+    <button type="button" class="carousel__btn" data-carousel-prev aria-label="Previous slide">
+      <Icon name="lucide:arrow-left" />
+    </button>
+    <div class="carousel__dots" data-carousel-dots aria-hidden="true"></div>
+    <button type="button" class="carousel__btn" data-carousel-next aria-label="Next slide">
+      <Icon name="lucide:arrow-right" />
+    </button>
+  </div>
+</div>
+
+<script>
+  const carousels = document.querySelectorAll<HTMLElement>('[data-carousel]');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  carousels.forEach((root) => {
+    const viewport = root.querySelector<HTMLElement>('[data-carousel-viewport]');
+    const track = root.querySelector<HTMLElement>('[data-carousel-track]');
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-carousel-next]');
+    const dotsContainer = root.querySelector<HTMLElement>('[data-carousel-dots]');
+    if (!viewport || !track || !prevBtn || !nextBtn || !dotsContainer) return;
+
+    const slides = Array.from(track.children) as HTMLElement[];
+    if (slides.length === 0) return;
+
+    const dots: HTMLButtonElement[] = slides.map((_, i) => {
+      const dot = document.createElement('button');
+      dot.type = 'button';
+      dot.className = 'carousel__dot';
+      dot.setAttribute('aria-label', `Go to slide ${i + 1}`);
+      dot.addEventListener('click', () => scrollToIndex(i));
+      dotsContainer.appendChild(dot);
+      return dot;
+    });
+
+    const scrollToIndex = (i: number) => {
+      const clamped = Math.max(0, Math.min(slides.length - 1, i));
+      slides[clamped].scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth',
+        inline: 'start',
+        block: 'nearest',
+      });
+    };
+
+    const currentIndex = () => {
+      const vpLeft = viewport.scrollLeft;
+      let nearest = 0;
+      let minDist = Infinity;
+      slides.forEach((slide, i) => {
+        const dist = Math.abs(slide.offsetLeft - vpLeft);
+        if (dist < minDist) {
+          minDist = dist;
+          nearest = i;
+        }
+      });
+      return nearest;
+    };
+
+    const updateState = () => {
+      const i = currentIndex();
+      dots.forEach((dot, di) => {
+        dot.classList.toggle('is-active', di === i);
+        dot.setAttribute('aria-current', di === i ? 'true' : 'false');
+      });
+      prevBtn.disabled = i === 0;
+      nextBtn.disabled = i === slides.length - 1;
+    };
+
+    prevBtn.addEventListener('click', () => scrollToIndex(currentIndex() - 1));
+    nextBtn.addEventListener('click', () => scrollToIndex(currentIndex() + 1));
+
+    viewport.addEventListener('scroll', () => {
+      window.requestAnimationFrame(updateState);
+    });
+
+    root.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        scrollToIndex(currentIndex() - 1);
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        scrollToIndex(currentIndex() + 1);
+      }
+    });
+
+    root.tabIndex = 0;
+    updateState();
+  });
+</script>

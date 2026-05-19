@@ -1,7 +1,7 @@
 ---
 // First-visit intro: traces M, then S, fades in the dotted detail,
-// then FLIPs the logo to the nav slot while the backdrop retracts
-// toward the top-left to reveal the page.
+// then FLIPs the logo to the nav slot while the backdrop fades out
+// to reveal the page.
 ---
 
 <div class="intro" data-intro aria-hidden="true">
@@ -137,17 +137,12 @@
       { duration: 620, easing: 'cubic-bezier(0.7, 0, 0.2, 1)', fill: 'forwards' }
     );
 
-    // Backdrop retracts toward top-left. clip-path composites cheaply.
-    // Strong ease-out so it launches off and settles into the corner.
-    const retract = overlay.animate(
-      [
-        { clipPath: 'inset(0 0 0 0)' },
-        { clipPath: 'inset(0 100% 100% 0)' },
-      ],
-      { duration: 620, easing: 'cubic-bezier(0.7, 0, 0.2, 1)', fill: 'forwards' }
+    const fadeOut = overlay.animate(
+      [{ opacity: 1 }, { opacity: 0 }],
+      { duration: 620, easing: 'ease-out', fill: 'forwards' }
     );
 
-    await Promise.all([flight.finished, retract.finished]);
+    await Promise.all([flight.finished, fadeOut.finished]);
     overlay.remove();
   }
 
@@ -165,9 +160,7 @@
     color: var(--color-fg);
     display: grid;
     place-items: center;
-    will-change: clip-path;
-    /* Start fully covering; JS animates clip-path to retract. */
-    clip-path: inset(0 0 0 0);
+    will-change: opacity;
   }
 
   .intro__logo {

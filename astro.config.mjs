@@ -1,10 +1,12 @@
 // @ts-check
 import { defineConfig, fontProviders } from 'astro/config';
 import icon from 'astro-icon';
+import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
+    mdx(),
     icon({
       include: {
         lucide: ['arrow-up-right', 'arrow-left', 'arrow-right', 'clock', 'hard-hat', 'book-open-text'],

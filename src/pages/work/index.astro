@@ -1,9 +1,11 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '~/layouts/BaseLayout.astro';
 
+const caseStudies = (await getCollection('caseStudies', ({ data }) => !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+
 const placeholders = [
-  { title: 'Case study one', year: '2025', summary: 'Short description of the project and its outcome.' },
-  { title: 'Case study two', year: '2024', summary: 'Short description of the project and its outcome.' },
   { title: 'Case study three', year: '2024', summary: 'Short description of the project and its outcome.' },
 ];
 ---
@@ -16,6 +18,15 @@ const placeholders = [
     </header>
 
     <ul class="work__list" role="list">
+      {caseStudies.map((entry) => (
+        <li class="work__item">
+          <a href={`/work/${entry.id}`} class="work__link">
+            <div class="work__meta"><small>{entry.data.timeline}</small></div>
+            <h3 class="work__title">{entry.data.title}</h3>
+            <p class="work__summary">{entry.data.subtitle}</p>
+          </a>
+        </li>
+      ))}
       {placeholders.map((item) => (
         <li class="work__item">
           <a href="#" class="work__link">

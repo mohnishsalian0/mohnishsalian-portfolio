@@ -11,6 +11,9 @@ import goldenSeal from '~/assets/golden-seal.png';
 import qrismQr from '~/assets/qrism-qr.png';
 import watchparty from '~/assets/watchparty.png';
 import scoot from '~/assets/scoot.png';
+import hsbcDisplayBoard from '~/content/case-studies/hsbc-queue-management/images/hsbc-display-board.png';
+import baleBanner from '~/content/case-studies/bale/images/banner.png';
+import talbotsBanner from '~/content/case-studies/events-for-talbots/images/event-list-public.png';
 
 const tickerWord = 'Ongoing';
 const tickerItems = Array.from({ length: 12 }, () => tickerWord);
@@ -46,7 +49,7 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     </h2>
 
     <div class="work__cards">
-			<a href="/work" class="case-card case-card--featured">
+			<a href="/work/hsbc-queue-management" class="case-card case-card--featured case-card--hsbc">
         <div class="case-card__body">
           <div class="case-card__award" aria-label="Best case study">
             <Image src={laurelL} alt="" class="case-card__laurel" />
@@ -64,12 +67,16 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
             Revamping JRNI's unused queuing product into the system that powered HSBC Singapore's flagship branch — and unlocked a new market for the company.
           </p>
         </div>
-        <div class="case-card__media" aria-hidden="true"></div>
+        <div class="case-card__media" aria-hidden="true">
+          <Image src={hsbcDisplayBoard} alt="" class="case-card__banner" />
+        </div>
       </a>
 
       <div class="work__row">
-        <a href="#" class="case-card">
-          <div class="case-card__media case-card__media--top" aria-hidden="true"></div>
+        <a href="/work/bale" class="case-card case-card--bale">
+          <div class="case-card__media case-card__media--top" aria-hidden="true">
+            <Image src={baleBanner} alt="" class="case-card__banner" />
+          </div>
           <div class="case-card__ticker" aria-hidden="true">
             <div class="marquee">
               <div class="marquee__track">
@@ -90,13 +97,14 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
               <li class="tag">🛠️ Development</li>
             </ul>
             <p class="case-card__desc">
-              Revamping JRNI's unused queuing product into the system that powered HSBC Singapore's flagship branch — and unlocked a new market for the company.
+              Co-founding Bale, a product that replaces diary-and-Excel inventory with roll-level tracking and routes daily accounting around TallyPrime without breaking the CA's workflow.
             </p>
           </div>
         </a>
 
-        <a href="#" class="case-card case-card--sealed">
+        <a href="/work/events-for-talbots" class="case-card case-card--sealed case-card--talbots">
           <div class="case-card__media case-card__media--top" aria-hidden="true">
+            <Image src={talbotsBanner} alt="" class="case-card__banner" />
             <Image src={goldenSeal} alt="" class="case-card__seal" />
           </div>
           <div class="case-card__body">
@@ -677,11 +685,39 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
   .case-card__media {
     background: #d9d9d9;
     flex: 1 1 auto;
+    position: relative;
+    overflow: hidden;
   }
 
   .case-card__media--top {
     aspect-ratio: 540 / 300;
     flex: none;
+  }
+
+  /* Per-card background colors */
+  .case-card--hsbc .case-card__media { background: #CE3726; }
+  .case-card--bale .case-card__media { background: #67A6C7; }
+  .case-card--talbots .case-card__media { background: #5142C7; }
+
+  /* Banner peeking from the bottom-right of the media area.
+     Anchored past the bottom-right corner so the image's edges run off the
+     bottom and right and only the upper-left portion stays visible. */
+  .case-card__banner {
+    position: absolute;
+    right: -8%;
+    bottom: -12%;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    border-radius: var(--radius-md, 12px);
+    box-shadow: -8px -8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  /* The Bale and Talbots cards use a short top-strip media area, so the
+     banner needs a much larger negative bottom to keep its top edge from
+     touching the strip's top edge. */
+  .case-card__media--top .case-card__banner {
+    bottom: -55%;
   }
 
   /* Featured card: side-by-side content + media */
@@ -703,10 +739,11 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
 
   @media (max-width: 768px) {
     .case-card--featured {
-      flex-direction: column;
+      flex-direction: column-reverse;
       min-height: 0;
     }
     .case-card--featured .case-card__media { aspect-ratio: 540 / 300; flex: none; }
+    .case-card--featured .case-card__banner { bottom: -55%; }
   }
 
   /* -------- Award badge (laurels + BEST) -------- */

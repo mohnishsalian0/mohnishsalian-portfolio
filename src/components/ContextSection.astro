@@ -1,0 +1,30 @@
+---
+import CaseStudyMeta from './CaseStudyMeta.astro';
+
+interface Props {
+  role: string;
+  team: string;
+  timeline: string;
+  company: string;
+  client: string;
+  status: string;
+}
+
+const { role, team, timeline, company, client, status } = Astro.props;
+---
+
+<section class="context-section">
+  <div class="context-section__text">
+    <slot />
+  </div>
+  <div class="context-section__aside">
+    <CaseStudyMeta
+      role={role}
+      team={team}
+      timeline={timeline}
+      company={company}
+      client={client}
+      status={status}
+    />
+  </div>
+</section>
