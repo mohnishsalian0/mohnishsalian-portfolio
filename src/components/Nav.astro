@@ -26,6 +26,15 @@ const initialTime = timeFormatter.format(new Date());
       <span class="nav__place">Mumbai, India.</span>
       <time class="nav__clock" data-nav-clock>{initialTime}</time>
     </p>
+
+    <a
+      class="btn btn--sm btn--primary nav__cta"
+      href="/resume.pdf"
+      target="_blank"
+      rel="noopener"
+    >
+      Resume
+    </a>
   </div>
 </nav>
 
@@ -62,9 +71,9 @@ const initialTime = timeFormatter.format(new Date());
   }
 
   .nav__inner {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
     gap: var(--space-5);
     max-width: var(--content-max);
     margin-inline: auto;
@@ -73,6 +82,7 @@ const initialTime = timeFormatter.format(new Date());
   }
 
   .nav__brand {
+    justify-self: start;
     display: inline-flex;
     align-items: center;
     color: var(--color-fg);
@@ -86,6 +96,7 @@ const initialTime = timeFormatter.format(new Date());
   }
 
   .nav__meta {
+    justify-self: center;
     margin: 0;
     max-width: none;
     font-family: var(--font-mono);
@@ -97,6 +108,12 @@ const initialTime = timeFormatter.format(new Date());
     display: inline-flex;
     gap: 0.4ch;
     white-space: nowrap;
+  }
+
+  .nav__cta {
+    justify-self: end;
+    min-width: 0;
+    padding-inline: var(--space-5);
   }
 
   .nav__clock {

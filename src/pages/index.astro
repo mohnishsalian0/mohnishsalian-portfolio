@@ -5,8 +5,6 @@ import { Icon } from 'astro-icon/components';
 import heroTitleSvg from '~/assets/hero-title.svg?raw';
 import tieSvg from '~/assets/tie.svg?raw';
 import scribbleS from '~/assets/scribble-s.svg?raw';
-import laurelL from '~/assets/laurel-wreath-l.png';
-import laurelR from '~/assets/laurel-wreath-r.png';
 import goldenSeal from '~/assets/golden-seal.png';
 import qrismQr from '~/assets/qrism-qr.png';
 import watchparty from '~/assets/watchparty.png';
@@ -51,20 +49,14 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     <div class="work__cards">
 			<a href="/work/hsbc-queue-management" class="case-card case-card--featured case-card--hsbc">
         <div class="case-card__body">
-          <div class="case-card__award" aria-label="Best case study">
-            <Image src={laurelL} alt="" class="case-card__laurel" />
-            <span class="case-card__award-label">BEST</span>
-            <Image src={laurelR} alt="" class="case-card__laurel" />
-          </div>
           <h3 class="case-card__title">
-            HSBC Queue Management — From Dormant Module to Enterprise Backbone
+            HSBC Queue Management: From Dormant Module to Enterprise Backbone
           </h3>
           <ul class="case-card__tags" role="list">
-            <li class="tag"><Icon name="lucide:clock" /> 10 min read</li>
             <li class="tag">🎨 Design</li>
           </ul>
           <p class="case-card__desc">
-            Revamping JRNI's unused queuing product into the system that powered HSBC Singapore's flagship branch — and unlocked a new market for the company.
+            Revamping JRNI's unused queuing product into the system that powered HSBC Singapore's flagship branch, and unlocked a new market for the company.
           </p>
         </div>
         <div class="case-card__media" aria-hidden="true">
@@ -92,9 +84,10 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
               Building an inventory and accounting system for India's fabric trading businesses
             </h3>
             <ul class="case-card__tags" role="list">
-              <li class="tag"><Icon name="lucide:clock" /> 10 min read</li>
               <li class="tag">🎨 Design</li>
               <li class="tag">🛠️ Development</li>
+              <li class="tag"><Icon name="simple-icons:nextdotjs" /> Next.js</li>
+              <li class="tag"><Icon name="simple-icons:supabase" /> Supabase</li>
             </ul>
             <p class="case-card__desc">
               Co-founding Bale, a product that replaces diary-and-Excel inventory with roll-level tracking and routes daily accounting around TallyPrime without breaking the CA's workflow.
@@ -112,12 +105,12 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
               Designing an Enterprise Events Platform That Turns Trunk Shows into Bookable Experiences
             </h3>
             <ul class="case-card__tags" role="list">
-              <li class="tag"><Icon name="lucide:clock" /> 10 min read</li>
               <li class="tag">🎨 Design</li>
               <li class="tag">🛠️ Development</li>
+              <li class="tag"><Icon name="simple-icons:react" /> React</li>
             </ul>
             <p class="case-card__desc">
-              Revamping JRNI's unused queuing product into the system that powered HSBC Singapore's flagship branch — and unlocked a new market for the company.
+              Revamping JRNI's unused queuing product into the system that powered HSBC Singapore's flagship branch, and unlocked a new market for the company.
             </p>
           </div>
         </a>
@@ -744,28 +737,6 @@ const tickerItems = Array.from({ length: 12 }, () => tickerWord);
     }
     .case-card--featured .case-card__media { aspect-ratio: 540 / 300; flex: none; }
     .case-card--featured .case-card__banner { bottom: -55%; }
-  }
-
-  /* -------- Award badge (laurels + BEST) -------- */
-  .case-card__award {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--color-fg);
-  }
-
-  .case-card__laurel {
-    display: block;
-    width: auto;
-    height: 2.875rem; /* 46px */
-  }
-
-  .case-card__award-label {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.5rem;
-    letter-spacing: -0.02em;
-    line-height: 1;
   }
 
   /* -------- Tag pills -------- */

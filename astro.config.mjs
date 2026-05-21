@@ -10,7 +10,7 @@ export default defineConfig({
     icon({
       include: {
         lucide: ['arrow-up-right', 'arrow-left', 'arrow-right', 'clock', 'hard-hat', 'book-open-text'],
-        'simple-icons': ['github', 'linkedin', 'behance', 'hsbc'],
+        'simple-icons': ['github', 'linkedin', 'behance', 'hsbc', 'nextdotjs', 'supabase', 'react'],
       },
     }),
   ],

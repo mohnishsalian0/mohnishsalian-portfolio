@@ -90,6 +90,16 @@
   font-size: 1rem;
 }
 
+.btn--primary {
+  background: var(--color-fg);
+  color: var(--color-accent-fg);
+}
+
+.btn--primary:hover {
+  background: transparent;
+  color: var(--color-fg);
+}
+
 /* ---------- Card ---------- */
 
 .card {
